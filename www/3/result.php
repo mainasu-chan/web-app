@@ -1,6 +1,7 @@
 <?php
- $teihen = (int)$_POST['teihen'];
+$teihen = (int)$_POST['teihen'];
 $height = (int)$_POST['height'];
+$area = $teihen * $height / 2
  ?>
 
 <html>
@@ -9,7 +10,7 @@ $height = (int)$_POST['height'];
 	</head>
 	<body>
     <?php
-    echo '底辺',$teihen,'cm高さ',$height,'cmの三角形の面積は',$teihen*$height/2,"cm<sup>2</sup>です"
+    echo '底辺',$teihen,'cm高さ',$height,'cmの三角形の面積は',$area,"cm<sup>2</sup>です"
     ?>
 	</body>
 </html>
