@@ -15,10 +15,12 @@
 		<p>あなたの名前は<?php echo $name;?>さんです。</p>
 		<p>性別は
 			<?php	
-			if($gender ===1){
+			if ($gender === 1) {
 				echo '男性';
-			}elseif($gender ===2){
+			} elseif ($gender === 2) {
 				echo '女性';
+			} else {
+				echo 'その他';
 			}
 			?>
 		です。</p>
