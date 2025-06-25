@@ -7,10 +7,11 @@
 </head>
 <body>
     <p>確認画面</p>
-    <p>名前:
-        <?php echo $_POST['name']; ?><br>
+    <p>
+        名前:
+        <php echo $_POST['name']; ?><br>
         メールアドレス:
-        <?php echo $_POST['email']; ?><br>
+        <php echo $_POST['email']; ?><br>
     </p>
 </body>
 </html>
