@@ -14,5 +14,5 @@
             <input type="text" name="id">
             <input type="submit" value="検索する">
         </form>
-    </body>
+    </rbody>
 </html>
