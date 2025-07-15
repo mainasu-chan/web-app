@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>会員登録アプリ</title>
+    </head>
+    <body>
+        <h1>会員登録アプリ</h1>
+        <p>会員登録します</p>
+        <form action="entry.php" method="post">
+            name
+            <input type="text" name="name" required>
+            <br>
+            age
+            <input type="texts" name="age" required pattern="\d+" title="ageは数値で入力してください"><br>
+            email
+            <input type="email" name="email"><br>
+            <input type="submit" value="登録する">
+            <input type="reset" value="リセット">
+        </form>
+    </body>
+</html>

@@ -1,6 +1,12 @@
 <?php
+$mode_flg = 0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
+    if($_POST['mode'] == '名前検索') {
+        $name = $_POST['name'];
+    } else if($_POST['mode'] == '番号検索') {
+        $id = $_POST['id'];
+        $mode_flg = 1;
+    }
 }
 $dsn = 'mysql:host=localhost;dbname=sample;charset=utf8';
 $username = 'root';
@@ -9,15 +15,19 @@ $data =[];
 try {
     $dbh = new PDO($dsn, $username, $password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "SELECT id,name,age,email FROM user WHERE name like :name";
-    $stmt = $dbh->prepare($sql);
-    $stmt->bindValue(':name', $name.'%', PDO::PARAM_STR);
-    $stmt->execute();
-
-    $count = $stmt->rowCount();
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $data[] = $row;
+    if($mode_flg == 0){
+        $sql = "SELECT id,name,age,email FROM user WHERE name like :name";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':name', $name.'%', PDO::PARAM_STR);
+    } else {
+        $sql = "SELECT id,name,age,email FROM user WHERE id = :id";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     }
+
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($data);
 } catch (PDOException $e) {
     echo  ($e->getMessage());
     die();
