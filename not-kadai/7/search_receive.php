@@ -14,7 +14,7 @@ try{
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $users[] = $row;
     }
-    echo "処理が終了しました。"
+    echo "処理が終了しました。";
 }catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
     die();

@@ -1,6 +1,6 @@
 <?php
 $str1 = " AB C ";
-$str2 = "       こんにちは　"
+$str2 = "       こんにちは　";
 
 $result1 = trim($str1);
 $result2 = trim($str2);

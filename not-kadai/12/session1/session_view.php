@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION["test"])) {
-    echo "$_SESSION[\"test\"]の値は「" . $_SESSION["test"] . "」です。";
+    echo $_SESSION["test"] . "の値は「" . $_SESSION["test"] . "」です。";
     echo "<br>";
     echo "セッション名は".session_name();
     echo "<br>";
