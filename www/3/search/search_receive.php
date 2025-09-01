@@ -11,7 +11,7 @@ try {
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "SELECT id,name,age,email FROM user WHERE name like :name";
     $stmt = $dbh->prepare($sql);
-    $stmt->bindValue(':name', $name.'%', PDO::PARAM_STR);
+    $stmt->bindValue(':name','%'.$name.'%', PDO::PARAM_STR);
     $stmt->execute();
 
     $count = $stmt->rowCount();
