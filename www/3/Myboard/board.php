@@ -53,7 +53,6 @@
 	//------------------------------------------------------------------------
 	//実行したいSQL文
 	//SELECT * FROM topic_tb ORDER BY date DESC
-	//投稿日時の新しい順にデータを取得するSQLを実行し、一行ずつデータを変数に取得し配列に格納するコードを記述
 	$data = [];
 	try{
 		$sql = 'SELECT * FROM topic_tb ORDER BY date DESC';
