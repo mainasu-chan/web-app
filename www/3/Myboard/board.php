@@ -53,14 +53,23 @@
 	//------------------------------------------------------------------------
 	// 画面表示
 	//------------------------------------------------------------------------
+	$search_key="";
+	if(isset($_POST['search_key']) && $_POST['search_key']!=""){
+		$search_key = $_POST['search_key'];
+	}
 	//実行したいSQL文
-	//SELECT * FROM topic_tb ORDER BY date DESC
+	//SELECT * FROM topic_tb WHERE title LIKE "%$search_key%" OR message LIKE "%$search_key%" ORDER BY date DESC
+
 	$data = [];
 	try{
-		$sql = 'SELECT * FROM topic_tb ORDER BY date DESC';
+		$sql = 'SELECT * FROM topic_tb WHERE title LIKE :search_key OR message LIKE :search_key ORDER BY date DESC';
 		$stmt = $dbh->prepare($sql);
+		$stmt->bindValue(':search_key', '%'.$search_key.'%', PDO::PARAM_STR);
 		$stmt->execute();
-		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			$data[] = $row;
+		}
 	}catch (PDOException $e){
 		echo 'ただ今メンテナンス中です。しばらくの後にお越しください。';
 		exit();
@@ -100,6 +109,12 @@
 				margin-left:50px;
 				width:700px;
 			}
+			.search{
+				background-color:#e6e6fa;
+				padding:8px;
+				margin-left:300px;
+				text-align:right;
+			}
 		</style>
 	</head>
 	<body>
@@ -119,6 +134,10 @@
 			<td colspan="2">
 			<input type="submit" name="action" value="投稿">
 			<input type="reset"  name="action" value="リロード">
+			<div class ="search">検索ワード:
+				<input type="text" name="search_key" value="$search_key">
+				<input type="submit" value="検索">
+			</div>
 			</td>
 		</tr>
 		</form>
