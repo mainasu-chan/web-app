@@ -15,7 +15,7 @@
 			$_SESSION['Username'] = $id;
 			header('Location: admin.php');
 		}else{
-			header('Location: login.php?error=1');
+			header('Location: login.php');
 		}
 	}
 ?>
